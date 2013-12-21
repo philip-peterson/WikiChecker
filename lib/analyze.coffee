@@ -16,22 +16,24 @@ getPagesNotLinkedToFromMainPage = (edges) ->
 			newEdges[source] ?= []
 			newEdges[source].push dest
 
-	remainingPages = new StringSet(Array.keys(edges))
+	remainingPages = new StringSet(Object.keys(edges))
 
 	getTargs = (page) ->
 		return newEdges[page] ? []
 
-	# Depth first traversal of the graph
+	# Traversal of the graph (no particular order, as long as we visit all nodes)
 	visited = new StringSet([])
 
-	toVisit = [MPNAME]
+	toVisit = new StringSet([MPNAME])
 	visit = (page) ->
+		return if visited.has(page)
 		visited.add(page)
 		remainingPages.remove(page)
-		toVisit.push(targ) for targ in getTargs(page) when not visited.has(targ)
+		toVisit.add(targ) for targ in getTargs(page) when not visited.has(targ)
 
-	while toVisit.length
+	while true
 		page = toVisit.pop()
+		break if not page?
 		visit(page)
 	return remainingPages
 
