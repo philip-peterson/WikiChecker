@@ -5,6 +5,9 @@ This is a script to see which pages on your wiki are not accessible
 by means of following links. If you cannot get to it by clicking links
 (starting from the Main Page), it shows up on the list.
 
+I will probably be expanding this eventually to perform other integrity or
+usability checks for wikis.
+
 Prereqs
 =======
     npm install nodemw
