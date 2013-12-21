@@ -1,4 +1,8 @@
 class StringSet
+	# Cannot have "__proto__", etc. as a key, so 
+	# prepend with a dot so the key will be ".__proto__"
+	# instead.
+
 	encode = (id) -> ".#{id}"
 	decode = (id) -> id.substring(1)
 
@@ -12,7 +16,7 @@ class StringSet
 	remove: (str) ->
 		delete @items[encode(str)]
 	toArray: () ->
-		return (x.substring(1) for own x of @items)
+		return (decode(x) for own x of @items)
 	peek: () ->
 		for own key of @items
 			return decode(key)
