@@ -11,13 +11,12 @@ getPagesNotLinkedToFromMainPage = (edges) ->
 	# We want a semantically equivalent digraph where (b, [a d]) means b LINKS TO a and d.
 	newEdges = {}
 
-	# At first, this will contain all pages
-	remainingPages = new StringSet([])
 	for own dest, sources of edges 
-		remainingPages.add(dest) 
 		for source in sources
 			newEdges[source] ?= []
 			newEdges[source].push dest
+
+	remainingPages = new StringSet(Array.keys(edges))
 
 	getTargs = (page) ->
 		return newEdges[page] ? []
