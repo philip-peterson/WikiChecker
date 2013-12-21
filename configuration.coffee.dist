@@ -1,0 +1,7 @@
+exports.configuration = {
+	username: 'CheckWikiBot'            # username for the bot on the MediaWiki-powered site
+	, password: 'supercalifragilisticexpialidocious'
+	, server: 'wiki.example.com'        # host name of MediaWiki-powered site
+	, path: '/api.php'                  # path to api.php script
+	, bllimit: Math.pow(2,31)			# max number of items for MediaWiki to return on a single API call.
+}
