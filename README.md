@@ -44,7 +44,7 @@ It's slow
 
 It can be slow; the bottleneck is in the data fetching though, not
 the processing. It has to make n requests, where n is the number of pages on
-the wiki. Our wiki is 135 pages and I timed this at running 41 seconds on a
+the wiki. Our wiki is 58 pages and I timed this at running 41 seconds on a
 Raspberry Pi.
 
 Dude, CoffeeScript?
