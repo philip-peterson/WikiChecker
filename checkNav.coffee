@@ -23,6 +23,8 @@ client.logIn configuration.username, configuration.password, (data) ->
 		listOfPages = listOfPages.map( (page) -> page.title )
 		pendingPages = (page for page in listOfPages)
 		finalStep = () -> analyze edges
+		i = 0
+		n = listOfPages.length
 		for page in listOfPages
 			do (page) ->
 				client.api.call {
@@ -32,6 +34,7 @@ client.logIn configuration.username, configuration.password, (data) ->
 					'bllimit': configuration.bllimit,
 					'blredirect': true
 				}, (data) ->
+					console.log "Fetched #{page} (#{++i} of #{n})"
 					edges[page] = (backlink.title for backlink in data.backlinks)
 					pendingPages.splice(pendingPages.indexOf(page), 1)
 					if pendingPages.length == 0
